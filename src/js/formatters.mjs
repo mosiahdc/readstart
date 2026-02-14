@@ -29,15 +29,15 @@ export function buildCoverUrl(coverId, size = 'M') {
 // Extract Descriptions
 export function extractDescription(data) {
   if (!data.description) return '';
-  
+
   if (typeof data.description === 'string') {
     return data.description;
   }
-  
+
   if (data.description.value) {
     return data.description.value;
   }
-  
+
   return '';
 }
 
@@ -123,8 +123,8 @@ export function buildBookDetails(data) {
       pageCount: pageCount || null,
       subjects: bookData.subjects || [],
       categories: bookData.subjects?.slice(0, 5) || [],
-      averageRating: ratings?.average || 0,
-      ratingsCount: ratings?.count || 0,
+      averageRating: ratings?.summary?.average ? parseFloat(ratings.summary.average) : 0,
+      ratingsCount: ratings?.summary?.count ? parseInt(ratings.summary.count) : 0,
       stats: stats || { wantToRead: 0, currentlyReading: 0, alreadyRead: 0 }
     }
   };
@@ -133,7 +133,7 @@ export function buildBookDetails(data) {
 // Clean HTML Entities And Tags from Text
 export function cleanHtmlText(text) {
   if (!text) return '';
-  
+
   return text
     .replace(/<\/?[^>]+(>|$)/g, '')
     .replace(/&#39;/g, "'")
@@ -145,7 +145,7 @@ export function cleanHtmlText(text) {
 // Remove Title Prefix From Snippet
 export function removeTitlePrefix(text, title) {
   if (!text || !title) return text;
-  
+
   const titleEscaped = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const titleRegex = new RegExp(`^${titleEscaped}\\s*`, 'gi');
   return text.replace(titleRegex, '');
@@ -154,7 +154,7 @@ export function removeTitlePrefix(text, title) {
 // Format And Clean Snippet Text
 export function formatSnippet(rawSnippet, title) {
   if (!rawSnippet) return null;
-  
+
   const cleaned = cleanHtmlText(rawSnippet);
   return removeTitlePrefix(cleaned, title);
 }

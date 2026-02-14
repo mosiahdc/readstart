@@ -70,10 +70,17 @@ export async function getBookDetails(bookId) {
   const cover = await extractValidCover(bookId, bookData);
   console.log("Checking Valid Cover");
   console.log(cover);
+
   const { authors, authorId } = await getAuthors(bookData);
   const { isbn, publishDate, pageCount } = await getEditionData(bookId, bookData);
+  // const ratings = await Apis.safeApiFetch(() => Apis.fetchBookRatings(bookId), { average: 0, count: 0 });
+  // const stats = await Apis.safeApiFetch(() => Apis.fetchBookStats(bookId), {});
   const ratings = await Apis.safeApiFetch(() => Apis.fetchBookRatings(bookId), { average: 0, count: 0 });
   const stats = await Apis.safeApiFetch(() => Apis.fetchBookStats(bookId), {});
+  console.log("Stats fetched:", stats);
+
+  const formattedStats = formatStats(stats);
+  console.log("Formatted Stats:", formattedStats);
 
   let description = Formatters.extractDescription(bookData);
 
@@ -98,7 +105,7 @@ export async function getBookDetails(bookId) {
     publishDate,
     pageCount,
     ratings,
-    stats: formatStats(stats)
+    stats: formattedStats
   });
 
   BookCache.cacheBookDetails(bookId, details);
@@ -178,7 +185,7 @@ async function extractValidCover(bookId, bookData) {
     if (editionCoverData > 0) {
       return Formatters.buildCoverUrl(editionCoverData.entries[0].covers[0], 'L');
     }
-    
+
     return '../images/no-cover.jpg';
   }
 }
@@ -260,8 +267,8 @@ async function enrichWithGoogleBooks(title, author, currentData) {
 // Format Bookshelves Stats
 function formatStats(stats) {
   return {
-    wantToRead: stats.counts?.['want-to-read'] || 0,
-    currentlyReading: stats.counts?.['currently-reading'] || 0,
-    alreadyRead: stats.counts?.['already-read'] || 0
+    wantToRead: stats.counts?.['want_to_read'] || 0,
+    currentlyReading: stats.counts?.['currently_reading'] || 0,
+    alreadyRead: stats.counts?.['already_read'] || 0
   };
 }

@@ -1,6 +1,6 @@
 import { loadHeaderFooter, qs, getParam } from './utils.mjs';
 import { getAuthorBooks, getAuthorInfo } from './BookData.mjs';
-import { getBooksFromShelf } from './shelves.js';
+import { getBooksFromShelf, SHELF_TYPES } from './shelves.js';
 import { renderBookCards } from './bookCard.js';
 import { PaginationManager } from './pagination.mjs';
 import { OffsetLoader } from './offsetLoader.mjs';
@@ -11,7 +11,7 @@ export default class AuthorPage {
     this.authorInfo = null;
     this.allBooks = [];
     this.currentResults = [];
-    
+
     // Pagination manager
     this.pagination = new PaginationManager({
       itemsPerPage: 10,
@@ -67,7 +67,7 @@ export default class AuthorPage {
   // Display Author Data
   displayAuthorData() {
     document.title = `ReadStart - ${this.authorInfo?.name || this.authorId}`;
-    
+
     qs('#author-name').textContent = this.authorInfo?.name || 'Unknown Author';
 
     if (this.authorInfo) {
@@ -91,9 +91,9 @@ export default class AuthorPage {
   updateStats() {
     qs('#total-books').textContent = this.offsetLoader.totalWorks;
 
-    const wantToRead = getBooksFromShelf('wantToRead');
-    const currentlyReading = getBooksFromShelf('currentlyReading');
-    const finished = getBooksFromShelf('finished');
+    const wantToRead = getBooksFromShelf(SHELF_TYPES.WANT_TO_READ);
+    const currentlyReading = getBooksFromShelf(SHELF_TYPES.CURRENTLY_READING);
+    const finished = getBooksFromShelf(SHELF_TYPES.FINISHED);
 
     const allShelves = [...wantToRead, ...currentlyReading, ...finished];
     const inLibrary = this.allBooks.filter(book =>
@@ -120,7 +120,7 @@ export default class AuthorPage {
     // Calculate pages based on TOTAL works, not just loaded
     const totalPagesIfAllLoaded = Math.ceil(this.offsetLoader.totalWorks / this.pagination.itemsPerPage);
     const currentLoadedPages = Math.ceil(this.currentResults.length / this.pagination.itemsPerPage);
-    
+
     const container = qs('#pagination');
     const pageNumbersContainer = qs('#page-numbers');
 
@@ -163,7 +163,7 @@ export default class AuthorPage {
     let startPage, endPage;
 
     // If we have more books to load, we can show next pages even if not loaded yet
-    const effectiveTotal = this.offsetLoader.hasMoreToLoad 
+    const effectiveTotal = this.offsetLoader.hasMoreToLoad
       ? Math.max(currentLoadedPages, current + 1)
       : currentLoadedPages;
 
@@ -268,14 +268,14 @@ export default class AuthorPage {
   // Handle Page Change with Smart Offset Loading
   async handlePageChange(targetPage) {
     const currentTotalPages = Math.ceil(this.currentResults.length / this.pagination.itemsPerPage);
-    
+
     // Validate page number
     if (targetPage < 1) return;
 
     // Check if we need to load more data
     if (targetPage > currentTotalPages && this.offsetLoader.hasMoreToLoad) {
       console.log(`🔄 Page ${targetPage} needs more data, loading...`);
-      
+
       try {
         // Clear current books and show loading spinner
         const booksGrid = qs('#books-grid');
@@ -292,7 +292,7 @@ export default class AuthorPage {
     // Now set the page and display
     this.pagination.currentPage = targetPage;
     this.displayBooks();
-    
+
     // Smooth scroll to book list section on page change (except page 1)
     if (this.pagination.currentPage > 1) {
       qs('.book-list-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -302,7 +302,7 @@ export default class AuthorPage {
   // Load New Books
   handleNewBooksLoaded(newBooks) {
     this.allBooks = [...this.allBooks, ...newBooks];
-    
+
     // Update currentResults based on active filter
     const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
     if (activeFilter === 'all') {

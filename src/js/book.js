@@ -1,6 +1,6 @@
 import { loadHeaderFooter, qs, getParam } from './utils.mjs';
 import { getBookDetails, searchByField } from './BookData.mjs';
-import { addBookToShelf } from './shelves.js';
+import { addBookToShelf, SHELF_TYPES } from './shelves.js';
 import { renderBookCards } from './bookCard.js';
 
 export default class BookDetail {
@@ -34,6 +34,10 @@ export default class BookDetail {
   displayBookData(book) {
     console.log("I am inside Display Book Data")
     console.log(book);
+    console.log("Checking volumeInfo:", book.volumeInfo);
+    console.log("Checking averageRating:", book.volumeInfo?.averageRating);
+    console.log("Checking ratingsCount:", book.volumeInfo?.ratingsCount);
+
     const info = book.volumeInfo;
     const title = info?.title || 'Unknown Title';
     const authors = info?.authors?.join(', ') || 'Unknown Author';
@@ -43,9 +47,9 @@ export default class BookDetail {
     const description = info?.description || 'No description available.';
     const pageCount = info?.pageCount || 'N/A';
     const publishedDate = info?.publishedDate || 'N/A';
-    const displayIsbn = book.isbn || 
-      info?.isbn || 
-      info?.industryIdentifiers?.find(id => id.type.includes('ISBN'))?.identifier || 
+    const displayIsbn = book.isbn ||
+      info?.isbn ||
+      info?.industryIdentifiers?.find(id => id.type.includes('ISBN'))?.identifier ||
       'N/A';
     const categories = info?.categories || info?.subjects || [];
     const averageRating = info?.averageRating || 0;
@@ -63,7 +67,7 @@ export default class BookDetail {
     qs('#book-pages').textContent = `${pageCount} pages`;
     qs('#book-published').textContent = `Published: ${publishedDate}`;
     qs('#book-isbn').textContent = `ISBN: ${displayIsbn}`;
-    qs('#book-rating-value').textContent = averageRating.toFixed(2);
+    qs('#book-rating-value').textContent = (parseFloat(averageRating) || 0).toFixed(2);
     qs('#book-rating-count').textContent = `(${ratingsCount} ratings)`;
     qs('#more-by-author-title').textContent = `More by ${authors.split(',')[0]}`;
     qs('#stat-want').textContent = stats.wantToRead || 0;
@@ -96,7 +100,11 @@ export default class BookDetail {
   // Add to Shelf Option
   showShelfSelection() {
     const shelf = prompt('Select a shelf:\n1. Want to Read\n2. Currently Reading\n3. Finished\n\nEnter number:');
-    const shelfMap = { '1': 'wantToRead', '2': 'currentlyReading', '3': 'finished' };
+    const shelfMap = {
+      '1': SHELF_TYPES.WANT_TO_READ,
+      '2': SHELF_TYPES.CURRENTLY_READING,
+      '3': SHELF_TYPES.FINISHED
+    };
 
     if (shelfMap[shelf] && this.currentBook) {
       addBookToShelf(shelfMap[shelf], this.currentBook);

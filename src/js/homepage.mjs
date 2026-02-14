@@ -1,5 +1,5 @@
 import { getTrendingBooks, searchBooks } from './BookData.mjs';
-import { getBooksFromShelf } from './shelves.js';
+import { getBooksFromShelf, SHELF_TYPES } from './shelves.js';
 import { qs } from './utils.mjs';
 import { renderBookCards } from './bookCard.js';
 import { PaginationManager } from './pagination.mjs';
@@ -100,12 +100,13 @@ export default class Homepage {
   // Update Shelf Counts
   updateShelfCounts() {
     const shelves = {
-      'wantToRead': '#want-count',
-      'currentlyReading': '#reading-count',
-      'finished': '#finished-count'
+      [SHELF_TYPES.WANT_TO_READ]: '#want-count',
+      [SHELF_TYPES.CURRENTLY_READING]: '#reading-count',
+      [SHELF_TYPES.FINISHED]: '#finished-count'
     };
 
-    Object.entries(shelves).forEach(([shelf, selector]) => {
+    Object.entries(shelves).forEach(
+      ([shelf, selector]) => {
       qs(selector).textContent = getBooksFromShelf(shelf).length;
     });
   }
