@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="View all books by an author, including biography and book statistics.">
+  <meta name="author" content="John Ralph Mosiah Dela Cruz">
+  <title>ReadStart - Author</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header-footer.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/large.css">
+</head>
+
+<body>
+
+  <!-- Header (loaded via partial) -->
+  <header id="header"></header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Back Button -->
+    <div class="back-btn-container">
+      <button id="back-btn" class="back-btn">&lt; Back to Search</button>
+    </div>
+
+    <!-- Author Hero Section -->
+    <section class="author-hero">
+      <div class="author-hero__container">
+
+        <!-- Left: Author Image -->
+        <div class="author-hero__left">
+          <div class="author-image">
+            <img id="author-image" src="images/no-author.png" alt="Author photo">
+          </div>
+        </div>
+
+        <!-- Right: Author Info -->
+        <div class="author-hero__right">
+          <h1 id="author-name">Author Name</h1>
+          <p id="author-birthdate" class="author-birthdate">Birthdate and Birthplace</p>
+          <p id="author-bio" class="author-bio">Short Biography</p>
+
+          <!-- Author Stats -->
+          <div class="author-stats">
+            <div class="author-stat">
+              <span id="total-books" class="author-stat__number">0</span>
+              <span class="author-stat__label">Total Books</span>
+            </div>
+            <div class="author-stat">
+              <span id="in-library" class="author-stat__number">0</span>
+              <span class="author-stat__label">In Your Library</span>
+            </div>
+            <div class="author-stat">
+              <span id="finished" class="author-stat__number">0</span>
+              <span class="author-stat__label">You Finished</span>
+            </div>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div class="author-filters">
+            <button class="filter-btn active" data-filter="all">All Books</button>
+            <button class="filter-btn" data-filter="inLibrary">In My Library</button>
+            <button class="filter-btn" data-filter="notInLibrary">Not in Library</button>
+            <button class="filter-btn" data-filter="currentlyReading">Currently Reading</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Book List Section -->
+    <section class="book-list-section">
+      <div class="container">
+        <h2>Book List</h2>
+
+        <!-- Books Grid -->
+        <div id="books-grid" class="books-grid">
+          <!-- Author books -->
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="pagination hidden">
+          <button class="page-btn" id="first-page">First</button>
+          <button class="page-btn" id="prev-page">&lt;</button>
+          <div class="page-numbers" id="page-numbers"></div>
+          <button class="page-btn" id="next-page">&gt;</button>
+          <button class="page-btn" id="last-page">Last</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (loaded via partial) -->
+  <footer id="footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/author.js" type="module"></script>
+</body>
+
+</html>

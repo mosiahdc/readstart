@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="View detailed information about a book including description, ratings, author books, and similar books.">
+  <meta name="author" content="John Ralph Mosiah Dela Cruz">
+  <title>ReadStart - Book Details</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header-footer.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/large.css">
+</head>
+<body>
+
+  <!-- Header (loaded via partial) -->
+  <header id="header"></header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Back Button -->
+    <div class="back-btn-container">
+      <button id="back-btn" class="back-btn">&lt; Back to Search</button>
+    </div>
+
+    <!-- Book Hero Section -->
+    <section class="book-hero">
+      <div class="book-hero__container">
+
+        <!-- Left: Cover and Actions -->
+        <div class="book-hero__left">
+          <div class="book-cover">
+            <img id="book-cover" src="images/placeholder.jpg" alt="Book cover">
+          </div>
+          <button id="add-to-shelf-btn" class="book-action-btn">+ Add to Shelf</button>
+          <button id="rate-btn" class="book-action-btn">Rate this Book</button>
+        </div>
+
+        <!-- Right: Book Info -->
+        <div class="book-hero__right">
+          <h1 id="book-title">Book Name</h1>
+          <p id="book-short-desc" class="book-short-desc">Short description here</p>
+          <p><a id="book-author" class="book-author" href="#">Author Name</a></p>
+
+          <!-- Ratings -->
+          <div class="book-rating">
+            <div id="book-stars" class="book-stars"></div>
+            <span id="book-rating-value" class="book-rating__value">0</span>
+            <span id="book-rating-count" class="book-rating__count">(0 ratings)</span>
+          </div>
+
+          <!-- Book Details -->
+          <div class="book-details">
+            <span id="book-pages" class="book-details__item">0 pages</span>
+            <span id="book-published" class="book-details__item">Published Date</span>
+            <span id="book-isbn" class="book-details__item">ISBN: N/A</span>
+          </div>
+
+          <!-- Genre Tags -->
+          <div id="book-genres" class="book-genres"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="book-description">
+      <div class="container">
+        <h2>Description</h2>
+        <p id="book-description">Loading description...</p>
+      </div>
+    </section>
+
+    <!-- Community Stats Section -->
+    <section class="community-stats">
+      <div class="container">
+        <h2>Community Stats</h2>
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat__number" id="stat-want">0</span>
+            <span class="stat__label">Want to Read</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number" id="stat-reading">0</span>
+            <span class="stat__label">Currently Reading</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number" id="stat-read">0</span>
+            <span class="stat__label">Already Read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- More by Author Section -->
+    <section class="more-by-author">
+      <div class="container">
+        <h2 id="more-by-author-title">More by Author</h2>
+        <div id="author-books-grid" class="books-grid">
+          <!-- Author books -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Similar Books Section -->
+    <section class="similar-books">
+      <div class="container">
+        <h2>Similar Books</h2>
+        <div id="similar-books-grid" class="books-grid">
+          <!-- Similar books -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (loaded via partial) -->
+  <footer id="footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/book.js" type="module"></script>
+</body>
+</html>
