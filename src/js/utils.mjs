@@ -66,13 +66,19 @@ function handleHeaderShrink() {
   const header = document.querySelector('header');
   if (!header) return;
 
+  let isShrunk = false;
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    const scrollY = window.scrollY;
+
+    if (!isShrunk && scrollY > 120) {
       header.classList.add('shrink');
-    } else {
+      isShrunk = true;
+    } else if (isShrunk && scrollY < 70) {
       header.classList.remove('shrink');
+      isShrunk = false;
     }
-  });
+  }, { passive: true });
 }
 
 // Hamburger Menu for Mobile View
