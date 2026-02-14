@@ -63,6 +63,25 @@ export function moveBook(fromShelf, toShelf, bookId) {
   return addBookToShelf(toShelf, bookToAdd);
 }
 
+// Remove Book From All Shelves
+export function removeBookFromAllShelves(bookId) {
+  const results = {
+    wantToRead: false,
+    currentlyReading: false,
+    finished: false,
+    totalRemoved: 0
+  };
+  
+  // Try to remove from each shelf
+  Object.values(SHELF_TYPES).forEach(shelf => {
+    const removed = removeBookFromShelf(shelf, bookId);
+    results[shelf] = removed;
+    if (removed) results.totalRemoved++;
+  });
+  
+  return results;
+}
+
 // Get All Shelves Withh Their Books
 export function getAllShelves() {
   return {
