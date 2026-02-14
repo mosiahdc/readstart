@@ -10,6 +10,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
+        book: resolve(__dirname, "src/book.html"),
+        author: resolve(__dirname, "src/author.html"),
       },
     },
   },
