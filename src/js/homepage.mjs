@@ -1,7 +1,7 @@
 import { getTrendingBooks, searchBooks } from './BookData.mjs';
 import { getBooksFromShelf, addBookToShelf } from './shelves.mjs';
 import { qs, getLocalStorage, showNotification } from './utils.mjs';
-import { renderBookCards } from './bookCard.mjs';
+import { renderBookCards } from './BookCard.mjs';
 import { PaginationManager } from './pagination.mjs';
 import { UIStateManager } from './uiState.mjs';
 import { READING_GOAL_KEY, SHELF_TYPES, BOOK_PROGRESS_KEY } from './constants.mjs';
