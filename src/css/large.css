@@ -252,7 +252,7 @@
 
   .book-item__description {
     font-size: 1rem;
-    -webkit-line-clamp: 4;
+    /* -webkit-line-clamp: 4; */
   }
 
   .book-item__meta {
@@ -291,9 +291,9 @@
     font-size: 1rem;
   }
 
-  .reading-book-description {
+  /* .reading-book-description {
     -webkit-line-clamp: 3;
-  }
+  } */
 
   .current-page-input {
     width: 100px !important;
@@ -434,12 +434,10 @@
   }
 
   .reading-book-description {
-    -webkit-line-clamp: 4;
+    /* -webkit-line-clamp: 4; */
     max-width: 800px;
   }
 
-  /* Timeline — removed duplicate .timeline-header h1 that set 3.5rem then 3rem
-     in the same media query. Correct value is 3.5rem at 1024px+ (overridden at 1440px). */
   .timeline-header h1 {
     font-size: 3.5rem;
   }
