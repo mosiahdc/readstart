@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/header-footer.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/large.css">
+
 </head>
 
 <body>
@@ -31,7 +33,7 @@
 
         <!-- Search Bar -->
         <div class="search-container">
-          <input type="text" id="search-input" class="search-input" placeholder="Search for books, authors, or ISBN..."
+          <input type="text" id="search-input" class="search-input" placeholder="Search your next book..."
             aria-label="Search books">
           <button id="search-btn" class="search-btn">Search</button>
         </div>
@@ -62,7 +64,6 @@
             <div class="results-controls">
               <select id="sort-filter" class="sort-filter">
                 <option value="relevance">Sort by Relevance</option>
-                <option value="newest">Newest First</option>
                 <option value="title">Title A-Z</option>
                 <option value="author">Author A-Z</option>
               </select>
@@ -101,6 +102,7 @@
               </svg>
               <h3>Something went wrong</h3>
               <p id="error-message">Unable to load books. Please try again.</p>
+              <button id="retry-btn" class="retry-btn">Retry</button>
             </div>
 
             <!-- Results Grid -->
@@ -127,16 +129,16 @@
             <h3>Shelves</h3>
             <div class="widget-content">
               <a href="wanttoread.html" class="shelf-link">
-                <span>Want to Read</span>
-                <span class="shelf-count" id="want-count">0</span>
+                <span>Queue</span>
+                <span class="shelf-count" id="want-count">00</span>
               </a>
               <a href="progress.html" class="shelf-link">
-                <span>Currently Reading</span>
-                <span class="shelf-count" id="reading-count">0</span>
+                <span>Reading</span>
+                <span class="shelf-count" id="reading-count">00</span>
               </a>
-              <a href="finished.html" class="shelf-link">
-                <span>Finished</span>
-                <span class="shelf-count" id="finished-count">0</span>
+              <a href="timeline.html" class="shelf-link">
+                <span>Archive</span>
+                <span class="shelf-count" id="finished-count">00</span>
               </a>
             </div>
           </div>
@@ -145,8 +147,36 @@
           <div class="widget goals-widget">
             <h3>Goals</h3>
             <div class="widget-content">
-              <p>Set your reading goals</p>
-              <button class="widget-btn">View Goals</button>
+              <!-- No Goal State -->
+              <div id="no-goal-state">
+                <p class="no-goal-tagline">Chart your course: How many stories will you explore this year?</p>
+                <a href="dashboard.html" class="dashboard-link">Go to Dashboard ></a>
+              </div>
+
+              <!-- With Goal State (hidden by default) -->
+              <div id="with-goal-state" class="hidden">
+                <div class="goal-numbers" style="text-align: center;">
+                  <span id="widget-goal-completed" class="goal-current">0</span>
+                  <span class="goal-separator">/</span>
+                  <span id="widget-goal-target" class="goal-target">0</span>
+                </div>
+                <p id="widget-goal-label" class="goal-label" style="text-align: center;">Books Completed</p>
+
+                <div class="progress-bar-container">
+                  <div class="progress-bar">
+                    <div id="widget-progress-fill" class="progress-fill" style="width: 0%"></div>
+                  </div>
+                </div>
+                <p id="widget-progress-percentage" class="progress-percentage" style="text-align: center;">0%</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Widget -->
+          <div class="widget progress-widget">
+            <h3>Progress</h3>
+            <div class="widget-content" id="progress-widget-content">
+              <div id="progress-books-list" class="progress-books-list"></div>
             </div>
           </div>
 
@@ -154,19 +184,11 @@
           <div class="widget actions-widget">
             <h3>Actions</h3>
             <div class="widget-content">
-              <button class="widget-btn">Add Book Manually</button>
-              <button class="widget-btn">Import Books</button>
+              <p class="action-widget-text">Can't find the book in our library? <br>Add them manually!</p>
+              <button id="add-book-manually-btn" class="widget-btn">Add Book Manually</button>
             </div>
           </div>
 
-          <!-- Progress Widget -->
-          <div class="widget progress-widget">
-            <h3>Progress</h3>
-            <div class="widget-content">
-              <p>Track your reading progress</p>
-              <a href="dashboard.html" class="widget-link">View Dashboard →</a>
-            </div>
-          </div>
         </aside>
 
       </div>

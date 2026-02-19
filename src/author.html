@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/header-footer.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/author.css">
   <link rel="stylesheet" href="css/large.css">
 </head>
 
@@ -52,7 +53,7 @@
             </div>
             <div class="author-stat">
               <span id="in-library" class="author-stat__number">0</span>
-              <span class="author-stat__label">In Your Library</span>
+              <span class="author-stat__label">In Your Shelf</span>
             </div>
             <div class="author-stat">
               <span id="finished" class="author-stat__number">0</span>
@@ -63,8 +64,8 @@
           <!-- Filter Buttons -->
           <div class="author-filters">
             <button class="filter-btn active" data-filter="all">All Books</button>
-            <button class="filter-btn" data-filter="inLibrary">In My Library</button>
-            <button class="filter-btn" data-filter="notInLibrary">Not in Library</button>
+            <button class="filter-btn" data-filter="inShelf">In My Shelf</button>
+            <button class="filter-btn" data-filter="notInShelf">Not in Shelf</button>
             <button class="filter-btn" data-filter="currentlyReading">Currently Reading</button>
           </div>
 
@@ -78,18 +79,37 @@
       <div class="container">
         <h2>Book List</h2>
 
-        <!-- Books Grid -->
-        <div id="books-grid" class="books-grid">
-          <!-- Author books -->
+        <!-- Loading State (visible by default) -->
+        <div id="loading-state" class="loading-state"
+          style="display: flex; justify-content: center; align-items: center; min-height: 600px; width: 100vw; margin-left: calc(-50vw + 50%);">
+          <div style="text-align: center;">
+            <div class="spinner"></div>
+            <p id="loading-text">Loading books...</p>
+          </div>
         </div>
 
-        <!-- Pagination -->
-        <div id="pagination" class="pagination hidden">
-          <button class="page-btn" id="first-page">First</button>
-          <button class="page-btn" id="prev-page">&lt;</button>
-          <div class="page-numbers" id="page-numbers"></div>
-          <button class="page-btn" id="next-page">&gt;</button>
-          <button class="page-btn" id="last-page">Last</button>
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state hidden" style="text-align: center; padding: 60px 20px;">
+          <div style="font-size: 48px; margin-bottom: 20px;">📚</div>
+          <h3 style="margin-bottom: 10px;">No Books Found</h3>
+          <p style="color: var(--text-secondary);">Try adjusting your filter to see more results.</p>
+        </div>
+
+        <!-- Books Grid and Pagination (hidden by default) -->
+        <div id="books-content" style="display: none;">
+          <!-- Books Grid -->
+          <div id="books-grid" class="books-grid">
+            <!-- Author books -->
+          </div>
+
+          <!-- Pagination -->
+          <div id="pagination" class="pagination hidden">
+            <button class="page-btn" id="first-page">First</button>
+            <button class="page-btn" id="prev-page">&lt;</button>
+            <div class="page-numbers" id="page-numbers"></div>
+            <button class="page-btn" id="next-page">&gt;</button>
+            <button class="page-btn" id="last-page">Last</button>
+          </div>
         </div>
 
       </div>

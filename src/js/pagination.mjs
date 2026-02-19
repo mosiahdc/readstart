@@ -1,8 +1,5 @@
 import { qs } from './utils.mjs';
 
-/**
- * Pagination helper class for managing page state and UI
- */
 export class PaginationManager {
   constructor(config = {}) {
     this.currentPage = 1;
@@ -10,7 +7,7 @@ export class PaginationManager {
     this.totalItems = 0;
     this.containerSelector = config.containerSelector || '#pagination';
     this.pageNumbersSelector = config.pageNumbersSelector || '#page-numbers';
-    this.onPageChange = config.onPageChange || (() => {});
+    this.onPageChange = config.onPageChange || (() => { });
   }
 
   getTotalPages() {
@@ -112,7 +109,7 @@ export class PaginationManager {
   goToPage(pageNumber) {
     const totalPages = this.getTotalPages();
     if (pageNumber < 1 || pageNumber > totalPages) return;
-    
+
     this.currentPage = pageNumber;
     this.onPageChange(pageNumber);
     this.render();

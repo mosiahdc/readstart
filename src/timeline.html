@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ReadStart Timeline - View your reading history and finished books timeline.">
+  <meta name="author" content="John Ralph Mosiah Dela Cruz">
+  <title>Reading Timeline - ReadStart</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header-footer.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/timeline.css">
+  <link rel="stylesheet" href="css/large.css">
+</head>
+
+<body>
+
+  <!-- Header (loaded via partial) -->
+  <header id="header"></header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="timeline-section">
+      <div class="container">
+
+        <!-- Timeline Header -->
+        <div class="timeline-header">
+          <h1>Reading Timeline</h1>
+          <p class="timeline-tagline">A chronological journey through your finished books.</p>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="timeline-filter-section">
+          <label for="timeline-filter" class="filter-label">Filter By:</label>
+          <select id="timeline-filter" class="timeline-filter">
+            <option value="all">All Time</option>
+          </select>
+        </div>
+
+        <!-- Summary Stats Section -->
+        <div class="timeline-stats">
+          <div class="timeline-stat-card card">
+            <div id="total-books-finished" class="stat-number">0</div>
+            <div class="stat-label">Books Finished</div>
+          </div>
+          <div class="timeline-stat-card card">
+            <div id="total-pages-read" class="stat-number">0</div>
+            <div class="stat-label">Pages Read</div>
+          </div>
+          <div class="timeline-stat-card card">
+            <div id="avg-read-time" class="stat-number">0 Days</div>
+            <div class="stat-label">Avg. Read Time</div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="loading-state hidden">
+          <div class="spinner"></div>
+          <p>Loading your timeline...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="timeline-empty-state" class="empty-state hidden">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          <h3>Your reading legacy starts here.</h3>
+          <p>The first milestone of your journey is just a few chapters away. Complete a book to see your history take
+            shape.</p>
+          <a href="progress.html" class="btn">Continue the Journey</a>
+        </div>
+
+        <!-- Timeline Content -->
+        <div id="timeline-content" class="timeline-content">
+          <!-- Timeline items will be dynamically inserted here -->
+        </div>
+
+        <!-- Pagination -->
+        <div id="timeline-pagination" class="pagination hidden">
+          <button class="page-btn" id="first-page">First</button>
+          <button class="page-btn" id="prev-page">&lt;</button>
+          <div class="page-numbers" id="timeline-page-numbers"></div>
+          <button class="page-btn" id="next-page">&gt;</button>
+          <button class="page-btn" id="last-page">Last</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (loaded via partial) -->
+  <footer id="footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/timeline.js" type="module"></script>
+</body>
+
+</html>

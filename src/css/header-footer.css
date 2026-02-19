@@ -1,4 +1,3 @@
-
 /* --- GLOBAL STYLES --- */
 body.no-scroll {
   overflow: hidden;
@@ -269,8 +268,8 @@ header.shrink .nav-settings:hover .settings-btn svg {
     width: 40px;
     height: 40px;
     position: relative;
-    z-index: 10002; 
-    transition: transform 0.2s ease; 
+    z-index: 10002;
+    transition: transform 0.2s ease;
   }
 
   .hamburger-btn:focus {
@@ -344,6 +343,7 @@ header.shrink .nav-settings:hover .settings-btn svg {
 
 /* --- DESKTOP RESPONSIVE STYLES --- */
 @media screen and (min-width: 768px) {
+
   /* Show desktop navigation */
   .nav-links {
     display: flex;

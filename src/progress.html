@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ReadStart Progress - Track your currently reading books and reading progress.">
+  <meta name="author" content="John Ralph Mosiah Dela Cruz">
+  <title>Reading Progress - ReadStart</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header-footer.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/progress.css">
+  <link rel="stylesheet" href="css/large.css">
+</head>
+
+<body>
+
+  <!-- Header (loaded via partial) -->
+  <header id="header"></header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="progress-section">
+      <div class="container">
+
+        <!-- Progress Header -->
+        <div class="progress-header">
+          <h1>Reading Progress</h1>
+          <p class="progress-tagline">Mapping the path to the final chapter.</p>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="progress-stats">
+          <div class="stat-card card">
+            <div id="books-in-progress" class="stat-number">0</div>
+            <div class="stat-label">Books In Progress</div>
+          </div>
+          <div class="stat-card card">
+            <div id="pages-this-week" class="stat-number">0</div>
+            <div class="stat-label">Pages Read This Week</div>
+          </div>
+          <div class="stat-card card">
+            <div id="current-streak" class="stat-number">0</div>
+            <div class="stat-label">Days Current Streak</div>
+          </div>
+        </div>
+
+        <!-- Currently Reading Section -->
+        <div class="currently-reading-section">
+          <h2>Currently Reading</h2>
+
+          <!-- Books List -->
+          <div id="reading-books-list" class="reading-books-list">
+            <!-- Book items will be dynamically inserted here -->
+          </div>
+
+          <!-- Loading State -->
+          <div id="loading-reading-state" class="loading-state hidden">
+            <div class="spinner"></div>
+            <p>Loading your books...</p>
+          </div>
+
+          <!-- Empty State -->
+          <div id="empty-reading-state" class="empty-state hidden">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <h3>The trail is currently quiet</h3>
+            <p>Your journey is waiting to unfold. Choose a story from your Queue to begin.</p>
+            <a href="wanttoread.html" class="btn">View Your Roadmap</a>
+          </div>
+
+          <!-- Pagination -->
+          <div id="pagination" class="pagination hidden">
+            <button class="page-btn" id="first-page">First</button>
+            <button class="page-btn" id="prev-page">&lt;</button>
+            <div class="page-numbers" id="page-numbers"></div>
+            <button class="page-btn" id="next-page">&gt;</button>
+            <button class="page-btn" id="last-page">Last</button>
+          </div>
+        </div>
+
+        <!-- Reading Tip Section -->
+        <div class="reading-tip-section card">
+          <p id="reading-tip" class="reading-tip-text">Reading Tip!</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (loaded via partial) -->
+  <footer id="footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/progress.js" type="module"></script>
+</body>
+
+</html>

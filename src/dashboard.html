@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ReadStart Dashboard - Track your reading progress, goals, and library statistics.">
+  <meta name="author" content="John Ralph Mosiah Dela Cruz">
+  <title>Dashboard - ReadStart</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header-footer.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/large.css">
+</head>
+
+<body>
+
+  <!-- Header (loaded via partial) -->
+  <header id="header"></header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="dashboard-section">
+      <div class="container">
+
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+          <h1>Personal Dashboard</h1>
+          <p class="dashboard-tagline">Your reading life, at a glance.</p>
+        </div>
+
+        <!-- Reading Goal Section -->
+        <div class="goal-section card">
+          <div class="goal-header">
+            <h2 id="goal-year" class="goal-year">2026 Reading Goal</h2>
+            <button id="edit-goal-btn" class="btn-secondary">Edit Goal</button>
+          </div>
+
+          <!-- Goal Display (default view) -->
+          <div id="goal-display" class="goal-display">
+            <div class="goal-numbers">
+              <span id="goal-completed" class="goal-current">0</span>
+              <span class="goal-separator">/</span>
+              <span id="goal-target" class="goal-target">0</span>
+            </div>
+            <p class="goal-label">Books Completed</p>
+
+            <div class="progress-bar-container">
+              <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+              </div>
+            </div>
+            <p id="progress-percentage" class="progress-percentage">0%</p>
+          </div>
+
+          <!-- Goal Editor (hidden by default) -->
+          <div id="goal-editor" class="goal-editor hidden">
+            <label for="goal-input">Books to read this year:</label>
+            <input id="goal-input" type="number" min="1" value="0" class="goal-input">
+            <div class="goal-actions">
+              <button id="save-goal-btn" class="btn btn-success">Save</button>
+              <button id="cancel-goal-btn" class="btn-secondary">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Library Stats Section -->
+        <div class="library-section">
+          <h2>My Library</h2>
+          <div class="dashboard-stats-grid">
+            <div class="stat-card card">
+              <div id="want-to-read-count" class="stat-number">10</div>
+              <div class="stat-label">In Queue</div>
+            </div>
+            <div class="stat-card card">
+              <div id="currently-reading-count" class="stat-number">3</div>
+              <div class="stat-label">Currently Reading</div>
+            </div>
+            <div class="stat-card card">
+              <div id="finished-count" class="stat-number">20</div>
+              <div class="stat-label">Finished</div>
+            </div>
+            <div class="stat-card card">
+              <div id="notes-count" class="stat-number">50</div>
+              <div class="stat-label">Notes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights Section -->
+        <div class="insights-section">
+          <div class="insights-grid">
+
+            <!-- Top Authors Card -->
+            <div class="insight-card card">
+              <h3 class="insight-title">Top Authors</h3>
+              <div id="top-authors-content" class="insight-content">
+                <div class="loading-state">
+                  <div class="spinner"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trending Genre Card -->
+            <div class="insight-card card">
+              <h3 class="insight-title">Trending Genre</h3>
+              <div id="trending-genre-content" class="insight-content">
+                <div class="loading-state">
+                  <div class="spinner"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Activity Card -->
+            <div class="insight-card card">
+              <h3 class="insight-title">Recent Activity</h3>
+              <div id="recent-activity-content" class="insight-content">
+                <div class="loading-state">
+                  <div class="spinner"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (loaded via partial) -->
+  <footer id="footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/dashboard.js" type="module"></script>
+</body>
+
+</html>

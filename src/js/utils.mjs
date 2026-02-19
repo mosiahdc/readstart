@@ -138,3 +138,35 @@ function handleHamburgerMenu() {
     });
   }
 }
+
+// Show a notification message
+export function showNotification(message, type = 'success') {
+  const existing = document.querySelector('.notification');
+  if (existing) existing.remove();
+
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `<span class="notification-message">${message}</span>`;
+
+  document.body.appendChild(notification);
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      notification.classList.add('notification-active');
+    });
+  });
+
+  setTimeout(() => {
+    notification.classList.remove('notification-active');
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+export function withTimeout(promise, timeoutMs = 5000) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Operation timed out')), timeoutMs)
+    )
+  ]);
+}

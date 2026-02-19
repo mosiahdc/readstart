@@ -1,14 +1,15 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-
-const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days
-const SEARCH_CACHE_KEY = 'book_search_cache';
-const TRENDING_CACHE_KEY = 'trending_books_cache';
-const DETAILS_CACHE_KEY = 'book_details_cache';
+import * as Constants from './constants.mjs';
 
 // Check If Cache Is Still Valid
 function isCacheValid(timestamp) {
-  return Date.now() - timestamp < CACHE_DURATION;
+  return Date.now() - timestamp < Constants.CACHE_DURATION;
 }
+
+function isTrendingCacheValid(timestamp) {
+  return Date.now() - timestamp < Constants.TRENDING_CACHE_DURATION;
+}
+
 
 // 
 //
@@ -16,21 +17,21 @@ function isCacheValid(timestamp) {
 //
 //
 
-export function cacheTrendingBooks(books) {
-  const cacheData = { books, timestamp: Date.now() };
-  setLocalStorage(TRENDING_CACHE_KEY, cacheData);
-  console.log('💾 Cached trending books');
+
+export function cacheTrendingBooks(books, subject = 'all') {
+  const cache = getLocalStorage(Constants.TRENDING_CACHE_KEY) || {};
+  cache[subject] = { books, timestamp: Date.now() };
+  setLocalStorage(Constants.TRENDING_CACHE_KEY, cache);
 }
 
-export function getCachedTrending() {
-  const cached = getLocalStorage(TRENDING_CACHE_KEY);
-  if (!cached || !isCacheValid(cached.timestamp)) {
-    localStorage.removeItem(TRENDING_CACHE_KEY);
+export function getCachedTrending(subject = 'all') {
+  const cache = getLocalStorage(Constants.TRENDING_CACHE_KEY) || {};
+  const cached = cache[subject];
+  if (!cached || !isTrendingCacheValid(cached.timestamp)) {
     return null;
   }
   return cached.books;
 }
-
 
 //
 //
@@ -46,8 +47,7 @@ export function cacheSearchResults(query, books) {
     timestamp: Date.now()
   });
   cache.searches = cache.searches.slice(0, 50);
-  setLocalStorage(SEARCH_CACHE_KEY, cache);
-  console.log(`💾 Cached search: "${query}"`);
+  setLocalStorage(Constants.SEARCH_CACHE_KEY, cache);
 }
 
 export function getCachedSearch(query) {
@@ -55,15 +55,12 @@ export function getCachedSearch(query) {
   const cached = cache.searches?.find(
     entry => entry.query === query.toLowerCase() && isCacheValid(entry.timestamp)
   );
-  
-  if (cached) {
-    console.log(`✅ Using cached results for "${query}"`);
-  }
+
   return cached?.books || null;
 }
 
 function getSearchCache() {
-  return getLocalStorage(SEARCH_CACHE_KEY) || { searches: [] };
+  return getLocalStorage(Constants.SEARCH_CACHE_KEY) || { searches: [] };
 }
 
 
@@ -74,21 +71,48 @@ function getSearchCache() {
 //
 
 export function cacheBookDetails(bookId, details) {
-  const cache = getLocalStorage(DETAILS_CACHE_KEY) || {};
+  const cache = getLocalStorage(Constants.DETAILS_CACHE_KEY) || {};
   cache[bookId] = {
     data: details,
     timestamp: Date.now()
   };
-  setLocalStorage(DETAILS_CACHE_KEY, cache);
+  setLocalStorage(Constants.DETAILS_CACHE_KEY, cache);
 }
 
 export function getCachedBookDetails(bookId) {
-  const cache = getLocalStorage(DETAILS_CACHE_KEY) || {};
+  const cache = getLocalStorage(Constants.DETAILS_CACHE_KEY) || {};
   const cached = cache[bookId];
-  
+
   if (cached && isCacheValid(cached.timestamp)) {
     return cached.data;
   }
-  
+
+  return null;
+}
+
+
+//
+//
+// AUTHOR INFO CACHE
+//
+//
+
+export function cacheAuthorInfo(authorId, authorInfo) {
+  const cache = getLocalStorage(Constants.AUTHOR_INFO_CACHE_KEY) || {};
+  cache[authorId] = {
+    data: authorInfo,
+    timestamp: Date.now()
+  };
+  setLocalStorage(Constants.AUTHOR_INFO_CACHE_KEY, cache);
+}
+
+export function getCachedAuthorInfo(authorId) {
+  const cache = getLocalStorage(Constants.AUTHOR_INFO_CACHE_KEY) || {};
+  const cached = cache[authorId];
+
+  if (cached && isCacheValid(cached.timestamp)) {
+    return cached.data;
+  }
+
   return null;
 }

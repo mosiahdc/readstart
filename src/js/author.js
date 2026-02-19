@@ -1,5 +1,5 @@
-import { loadHeaderFooter } from "./utils.mjs";
-import AuthorPage from "./authorPage.mjs";
+import { loadHeaderFooter } from './utils.mjs';
+import AuthorPage from './AuthorPage.mjs';
 
 loadHeaderFooter();
 

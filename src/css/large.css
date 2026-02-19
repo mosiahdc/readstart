@@ -1,3 +1,55 @@
+/* --- MODAL RESPONSIVE STYLES --- */
+@media screen and (max-width: 767px) {
+  .modal-overlay {
+    padding: var(--spacing-sm);
+  }
+
+  .modal-content {
+    max-width: 100%;
+  }
+
+  .modal-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .modal-body {
+    padding: var(--spacing-md);
+  }
+
+  .shelf-option {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .shelf-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .notification {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    left: var(--spacing-sm);
+    min-width: auto;
+  }
+
+  /* Progress Page Mobile */
+  .reading-book-controls {
+    flex-wrap: wrap;
+  }
+
+  .current-page-input {
+    width: 70px;
+  }
+
+  .reading-book-actions .btn {
+    flex: 1 1 calc(50% - var(--spacing-xs));
+    min-width: 0;
+  }
+}
 
 @media screen and (min-width: 768px) {
 
@@ -30,9 +82,7 @@
 
   .results-grid,
   .books-grid {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
   }
 
   .book-hero__container {
@@ -47,10 +97,7 @@
     margin-bottom: 0;
   }
 
-  .book-cover {
-    max-width: 100%;
-  }
-
+  .book-cover,
   .book-action-btn {
     max-width: 100%;
   }
@@ -63,19 +110,15 @@
     font-size: 2.5rem;
   }
 
-  .book-rating {
-    justify-content: flex-start;
-  }
-
-  .book-details {
-    justify-content: flex-start;
-  }
-
+  /* Shared left-align for book detail flex items */
+  .book-rating,
+  .book-details,
   .book-genres {
     justify-content: flex-start;
   }
 
-  .stats-grid {
+  .book-stats-grid,
+  .dashboard-stats-grid {
     flex-direction: row;
     max-width: 100%;
   }
@@ -88,10 +131,12 @@
     max-width: 800px;
   }
 
+  /* Shared left-align for book/community/author section headings */
   .book-description h2,
   .community-stats h2,
   .more-by-author h2,
-  .similar-books h2 {
+  .similar-books h2,
+  .book-list-section h2 {
     text-align: left;
   }
 
@@ -121,6 +166,7 @@
   .author-bio {
     text-align: left;
   }
+
   .author-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -138,13 +184,128 @@
     grid-column: auto;
   }
 
-  .book-list-section h2 {
-    text-align: left;
-  }
-
   .right-column {
     position: sticky;
     top: var(--spacing-md);
+  }
+
+  /* Dashboard */
+  .dashboard-header h1 {
+    font-size: 3rem;
+  }
+
+  .goal-numbers {
+    gap: var(--spacing-md);
+  }
+
+  .goal-current,
+  .goal-target {
+    font-size: 5rem;
+  }
+
+  .goal-separator {
+    font-size: 4rem;
+  }
+
+  .book-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .insights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .insight-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Shelf */
+  .shelf-header {
+    align-items: center;
+  }
+
+  .shelf-title-group h1 {
+    font-size: 3rem;
+  }
+
+  .shelf-tagline {
+    font-size: 1.125rem;
+  }
+
+  .book-item {
+    grid-template-columns: 160px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .book-item__title {
+    font-size: 1.5rem;
+  }
+
+  .book-item__author {
+    font-size: 1rem;
+  }
+
+  .book-item__description {
+    font-size: 1rem;
+    -webkit-line-clamp: 4;
+  }
+
+  .book-item__meta {
+    font-size: 0.875rem;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    padding: var(--spacing-md);
+  }
+
+  .modal-content {
+    max-width: 500px;
+  }
+
+  /* Progress */
+  .progress-header h1 {
+    font-size: 3rem;
+  }
+
+  .progress-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .reading-book-item {
+    grid-template-columns: 160px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .reading-book-title {
+    font-size: 1.5rem;
+  }
+
+  .reading-book-author {
+    font-size: 1rem;
+  }
+
+  .reading-book-description {
+    -webkit-line-clamp: 3;
+  }
+
+  .current-page-input {
+    width: 100px !important;
+  }
+
+  .reading-book-actions .btn {
+    min-width: 120px;
+  }
+
+  #reading-details-modal .modal-content,
+  #finished-details-modal .modal-content {
+    max-width: 28rem;
   }
 }
 
@@ -192,8 +353,8 @@
     font-size: 3rem;
   }
 
+  /* Footer */
   .footer-container {
-    display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: var(--spacing-lg);
     align-items: center;
@@ -205,6 +366,104 @@
 
   .social-icons {
     justify-content: flex-end;
+  }
+
+  /* Dashboard */
+  .dashboard-header h1 {
+    font-size: 3.5rem;
+  }
+
+  .insights-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .insight-card:last-child {
+    grid-column: auto;
+  }
+
+  .goal-section,
+  .insight-card,
+  .stat-card {
+    padding: var(--spacing-xl);
+  }
+
+  .stat-number {
+    font-size: 3.5rem;
+  }
+
+  /* Shelf */
+  .shelf-title-group h1 {
+    font-size: 3.5rem;
+  }
+
+  .book-item {
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+  }
+
+  .book-item__title {
+    font-size: 1.75rem;
+  }
+
+  .book-item__description {
+    max-width: 800px;
+  }
+
+  .book-item:hover,
+  .reading-book-item:hover,
+  .timeline-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Progress */
+  .progress-header h1 {
+    font-size: 3.5rem;
+  }
+
+  .reading-book-item {
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    margin: var(--spacing-sm) 0;
+  }
+
+  .reading-book-title {
+    font-size: 1.75rem;
+  }
+
+  .reading-book-description {
+    -webkit-line-clamp: 4;
+    max-width: 800px;
+  }
+
+  /* Timeline — removed duplicate .timeline-header h1 that set 3.5rem then 3rem
+     in the same media query. Correct value is 3.5rem at 1024px+ (overridden at 1440px). */
+  .timeline-header h1 {
+    font-size: 3.5rem;
+  }
+
+  .timeline-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .timeline-item {
+    grid-template-columns: auto 120px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .timeline-book-cover {
+    width: 120px;
+  }
+
+  .timeline-book-title {
+    font-size: 1.5rem;
+  }
+
+  .timeline-book-author {
+    font-size: 1rem;
   }
 }
 
@@ -220,5 +479,14 @@
   .author-image {
     width: 350px;
     height: 350px;
+  }
+
+  .goal-current,
+  .goal-target {
+    font-size: 6rem;
+  }
+
+  .goal-separator {
+    font-size: 5rem;
   }
 }

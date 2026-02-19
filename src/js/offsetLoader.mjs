@@ -1,15 +1,15 @@
 
 export class OffsetLoader {
   constructor(config = {}) {
-    this.apiLimit = config.apiLimit || 50;  // Books per API call
-    this.booksPerPage = config.booksPerPage || 10;  // Books per UI page
-    this.totalWorks = 0;  // Total books available
-    this.loadedCount = 0;  // Books loaded so far
-    this.currentOffset = 0;  // Current API offset
+    this.apiLimit = config.apiLimit || 50;
+    this.booksPerPage = config.booksPerPage || 10;
+    this.totalWorks = 0;
+    this.loadedCount = 0;
+    this.currentOffset = 0;
     this.hasMoreToLoad = true;
     this.isLoading = false;
-    this.onBooksLoaded = config.onBooksLoaded || (() => {});
-    this.fetchFunction = config.fetchFunction;  // API fetch function
+    this.onBooksLoaded = config.onBooksLoaded || (() => { });
+    this.fetchFunction = config.fetchFunction;
   }
 
   // Calculate Total UI Pages Based On Total Works
@@ -33,77 +33,67 @@ export class OffsetLoader {
     const requiredBooks = targetPage * this.booksPerPage;
     const booksToLoad = requiredBooks - this.loadedCount;
     const offsetCallsNeeded = Math.ceil(booksToLoad / this.apiLimit);
-    
+
     const offsets = [];
     for (let i = 0; i < offsetCallsNeeded; i++) {
       offsets.push(this.currentOffset + (i * this.apiLimit));
     }
-    
+
     return offsets;
   }
 
   // Load Single Batch with Specific Offset
-  async loadBatch(offset) {
+  async loadBatch(offset, timeoutMs = 10000) {
     if (!this.fetchFunction) {
       throw new Error('Fetch function not configured');
     }
 
-    const result = await this.fetchFunction(this.apiLimit, offset);
-    
-    this.currentOffset = result.nextOffset || offset + this.apiLimit;
-    this.hasMoreToLoad = result.hasNext;
-    this.loadedCount += result.books.length;
-    
-    return result.books;
+    try {
+      // Wrap fetch with timeout protection
+      const result = await Promise.race([
+        this.fetchFunction(this.apiLimit, offset),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Book load timeout')), timeoutMs)
+        )
+      ]);
+
+      this.currentOffset = result.nextOffset || offset + this.apiLimit;
+      this.hasMoreToLoad = result.hasNext;
+      this.loadedCount += result.books.length;
+
+      return result.books;
+    } catch (error) {
+      if (error.message === 'Book load timeout') {
+        console.error(`⏱️ Timeout loading books at offset ${offset}`);
+      }
+      throw error;
+    }
   }
 
   // Loaded Multiple Batches To Reach Target Page
   async loadToPage(targetPage) {
-    if (this.isLoading) {
-      console.log('⏳ Already loading, please wait...');
-      return [];
-    }
-
-    if (!this.needsLoadForPage(targetPage)) {
-      console.log('✅ Already have enough books loaded');
-      return [];
-    }
-
-    this.isLoading = true;
-    const offsets = this.calculateOffsetsNeeded(targetPage);
-    const allNewBooks = [];
-
-    console.log(`📥 Loading ${offsets.length} batch(es) to reach page ${targetPage}`);
-
     try {
-      for (const offset of offsets) {
-        console.log(`📖 Loading offset ${offset}...`);
-        const books = await this.loadBatch(offset);
-        allNewBooks.push(...books);
-        
-        // Stop if no more books available
+      const batchesNeeded = Math.ceil((targetPage * this.booksPerPage - this.loadedCount) / this.apiLimit);
+
+      for (let i = 0; i < batchesNeeded; i++) {
         if (!this.hasMoreToLoad) break;
+        const books = await this.loadBatch(this.currentOffset);
+        this.onBooksLoaded(books);
+        await new Promise(resolve => setTimeout(resolve, 300));
       }
-
-      console.log(`✅ Loaded ${allNewBooks.length} books. Total: ${this.loadedCount}/${this.totalWorks}`);
-      
-      // Callback with new books
-      this.onBooksLoaded(allNewBooks);
-      
-      return allNewBooks;
-
     } catch (error) {
       console.error('❌ Error loading batches:', error);
       throw error;
-    } finally {
-      this.isLoading = false;
     }
   }
 
   // Load To Last Page
   async loadToLastPage() {
-    const lastPage = this.getTotalPages();
-    return await this.loadToPage(lastPage);
+    while (this.hasMoreToLoad) {
+      const books = await this.loadBatch(this.currentOffset);
+      this.onBooksLoaded(books);
+      await new Promise(resolve => setTimeout(resolve, 300));
+    }
   }
 
   // Load Next

@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="View detailed information about a book including description, ratings, author books, and similar books.">
+  <meta name="description"
+    content="View detailed information about a book including description, ratings, author books, and similar books.">
   <meta name="author" content="John Ralph Mosiah Dela Cruz">
   <title>ReadStart - Book Details</title>
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/header-footer.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/book.css">
   <link rel="stylesheet" href="css/large.css">
 </head>
+
 <body>
 
   <!-- Header (loaded via partial) -->
@@ -35,7 +39,6 @@
             <img id="book-cover" src="images/placeholder.jpg" alt="Book cover">
           </div>
           <button id="add-to-shelf-btn" class="book-action-btn">+ Add to Shelf</button>
-          <button id="rate-btn" class="book-action-btn">Rate this Book</button>
         </div>
 
         <!-- Right: Book Info -->
@@ -77,7 +80,7 @@
     <section class="community-stats">
       <div class="container">
         <h2>Community Stats</h2>
-        <div class="stats-grid">
+        <div class="book-stats-grid">
           <div class="stat">
             <span class="stat__number" id="stat-want">0</span>
             <span class="stat__label">Want to Read</span>
@@ -122,4 +125,5 @@
   <!-- Scripts -->
   <script src="js/book.js" type="module"></script>
 </body>
+
 </html>
