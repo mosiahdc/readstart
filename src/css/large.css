@@ -433,9 +433,7 @@
     font-size: 3.5rem;
   }
 
-  .timeline-stats {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  /* Timeline stats handled in timeline.css */
 
   .timeline-item {
     grid-template-columns: auto 120px 1fr;
