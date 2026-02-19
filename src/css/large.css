@@ -80,10 +80,7 @@
     flex: 1;
   }
 
-  .results-grid,
-  .books-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  /* Results grid handled in home.css */
 
   .book-hero__container {
     display: grid;
@@ -323,15 +320,7 @@
     display: flex;
   }
 
-  .results-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .books-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-  }
+  /* Results grid handled in home.css */
 
   .book-hero__container {
     grid-template-columns: 300px 1fr;
