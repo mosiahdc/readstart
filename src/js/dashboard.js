@@ -1,8 +1,5 @@
-import '../css/base.css';
-import '../css/header-footer.css';
-import '../css/style.css';
+import '../css/index.css';
 import '../css/dashboard.css';
-import '../css/large.css';
 import { loadHeaderFooter, qs, getLocalStorage, setLocalStorage, showNotification, withTimeout } from './utils.mjs';
 import { getBooksFromShelf } from './shelves.mjs';
 import { READING_GOAL_KEY, SHELF_TYPES, BOOK_PROGRESS_KEY } from './constants.mjs';
