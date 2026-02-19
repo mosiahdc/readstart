@@ -39,7 +39,7 @@
   font-weight: 600;
 }
 
-/* Search Error Feedback (improvement #4) */
+/* Search Error Feedback */
 .search-input--error {
   border: 2px solid #dc3545;
   background-color: #fff5f5;
@@ -98,7 +98,11 @@
   color: var(--text-white);
 }
 
-/* --- SEARCH RESULTS PAGE --- */
+/* ===================================
+   2. SEARCH RESULTS & LAYOUT
+   =================================== */
+
+/* Results Section */
 .results-section {
   padding: var(--spacing-xl) 0;
 }
@@ -132,7 +136,12 @@
   gap: var(--spacing-md);
 }
 
-/* --- SIDEBAR & WIDGETS --- */
+
+/* ===================================
+   SIDEBAR & WIDGETS
+   =================================== */
+
+/* Sidebar Container */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -175,7 +184,132 @@
   font-size: 0.75rem;
 }
 
-/* --- BOOK DETAIL PAGE --- */
+
+/* ===================================
+   LAYOUT & DISPLAY HELPERS
+   =================================== */
+
+/* Mobile Adjustments */
+@media screen and (max-width: 767px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Two-column layout for results section */
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.results-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.results-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.result-count {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  background: var(--bg-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-weight: 500;
+}
+
+/* Sort filter styling */
+.sort-filter {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--bg-white);
+  font-size: 0.9rem;
+  color: var(--text-color);
+  cursor: pointer;
+  min-width: 180px;
+  transition: border-color 0.2s;
+}
+
+.content-grid {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .two-column-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .right-column {
+    position: static;
+    order: 1;
+  }
+
+  .left-column {
+    order: -1;
+  }
+
+  .results-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .results-title,
+  .results-controls {
+    flex-wrap: wrap;
+  }
+
+  .sort-filter {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .two-column-layout {
+    grid-template-columns: 1fr 280px;
+    gap: 1.5rem;
+  }
+}
+
+
+
+
+/* ===================================
+   3. BOOK DETAIL PAGE
+   =================================== */
 
 /* Book Hero Section */
 .book-hero {
@@ -416,7 +550,10 @@
   text-align: center;
 }
 
-/* --- AUTHOR PAGE --- */
+
+/* ===================================
+   4. AUTHOR PAGE
+   =================================== */
 
 /* Back Button */
 .back-btn-container {
@@ -534,7 +671,7 @@
   display: block;
 }
 
-/* Filter Buttons - Mobile: Grid Layout */
+/* Filter Buttons - Mobile: 2 buttons per row, all equal */
 .author-filters {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -545,13 +682,13 @@
 .author-filters .filter-btn {
   padding: var(--spacing-sm) var(--spacing-md);
   font-size: 0.875rem;
-  white-space: nowrap;
+  white-space: normal;
   text-align: center;
+  width: 100%;
 }
 
-/* Make "Currently Reading" span full width on mobile */
 .author-filters .filter-btn:last-child {
-  grid-column: 1 / -1;
+  grid-column: auto;
 }
 
 /* Book List Section */
@@ -684,8 +821,9 @@
   }
 }
 
+
 /* ===================================
-   DASHBOARD PAGE STYLES
+   5. DASHBOARD PAGE
    =================================== */
 
 /* Dashboard Section */
@@ -1120,8 +1258,9 @@
   min-height: 200px;
 }
 
+
 /* ===================================
-   WANT TO READ / SHELF PAGE STYLES
+   6. SHELF / WANT TO READ PAGE
    =================================== */
 
 /* Shelf Section */
@@ -1138,16 +1277,17 @@
   margin-bottom: var(--spacing-xl);
   gap: var(--spacing-md);
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .shelf-title-group h1 {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   color: var(--text-primary);
   margin-bottom: var(--spacing-xs);
 }
 
 .shelf-tagline {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   margin: 0;
 }
@@ -1162,6 +1302,7 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  align-self: flex-start;
 }
 
 .shelf-count-badge span {
@@ -1176,17 +1317,17 @@
   gap: var(--spacing-lg);
 }
 
-/* Book Item */
+/* Book Item - Mobile Vertical Layout */
 .book-item {
   background-color: var(--text-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   padding: var(--spacing-md);
-  display: grid;
-  grid-template-columns: 120px 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-md);
   transition: all var(--transition-speed);
-  align-items: start;
+  align-items: stretch;
 }
 
 .book-item:hover {
@@ -1197,7 +1338,8 @@
 /* Book Cover */
 .book-item__cover {
   width: 100%;
-  aspect-ratio: 2/3;
+  height: 250px;
+  aspect-ratio: auto;
   border-radius: var(--radius-md);
   overflow: hidden;
   background-color: var(--secondary-bg);
@@ -1226,7 +1368,7 @@
 }
 
 .book-item__title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -1244,7 +1386,7 @@
 }
 
 .book-item__author {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   margin: 0;
 }
@@ -1260,43 +1402,45 @@
 }
 
 .book-item__description {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--text-primary);
   line-height: 1.5;
   margin: var(--spacing-xs) 0;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .book-item__meta {
-  font-size: 0.813rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
   margin: var(--spacing-xs) 0;
 }
 
 /* Book Actions */
 .book-item__actions {
-  display: flex;
-  gap: var(--spacing-sm);
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  gap: var(--spacing-xs);
   margin-top: var(--spacing-sm);
-  flex-wrap: wrap;
 }
 
 .book-item__btn {
-  padding: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   font-size: 0.875rem;
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
   transition: all var(--transition-speed);
   font-weight: 500;
+  width: 100%;
 }
 
 .book-item__btn--primary {
   background-color: var(--text-primary);
   color: var(--text-white);
+  grid-column: 1;
 }
 
 .book-item__btn--primary:hover {
@@ -1308,13 +1452,25 @@
 .book-item__btn--secondary {
   background-color: transparent;
   color: var(--text-secondary);
-  border: 1px solid var(--text-secondary);
+  border: 1px solid var(--text-light);
+  padding: var(--spacing-xs);
+  font-size: 0;
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-item__btn--secondary::before {
+  content: "×";
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 .book-item__btn--secondary:hover {
-  background-color: var(--secondary-bg);
-  color: var(--text-primary);
-  border-color: var(--text-primary);
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  background-color: rgba(239, 68, 68, 0.05);
 }
 
 /* Pagination specific to shelf pages */
@@ -1336,8 +1492,9 @@
   cursor: not-allowed;
 }
 
+
 /* ===================================
-   TIMELINE PAGE STYLES
+   7. TIMELINE PAGE
    =================================== */
 
 /* Timeline Section */
@@ -1353,18 +1510,18 @@
 }
 
 .timeline-header h1 {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   margin-bottom: var(--spacing-xs);
 }
 
 .timeline-tagline {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
 }
 
 /* Filter Section */
 .timeline-filter-section {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -1374,6 +1531,7 @@
 .filter-label {
   font-weight: 500;
   color: var(--text-primary);
+  font-size: 0.9rem;
 }
 
 .timeline-filter {
@@ -1381,9 +1539,10 @@
   border: 1px solid #ddd;
   border-radius: var(--radius-md);
   background-color: var(--text-white);
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
 }
 
 /* Timeline Stats */
@@ -1396,8 +1555,16 @@
 
 .timeline-stat-card {
   text-align: center;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-md);
   background-color: var(--text-white);
+}
+
+.timeline-stat-card .stat-number {
+  font-size: 2rem;
+}
+
+.timeline-stat-card .stat-label {
+  font-size: 0.875rem;
 }
 
 /* Timeline Content */
@@ -1413,12 +1580,13 @@
 }
 
 .timeline-period-header {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-primary);
   padding-bottom: var(--spacing-sm);
-  border-bottom: 2px solid var(--secondary-bg);
-  margin-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
 }
 
 /* Timeline Items Container */
@@ -1428,17 +1596,19 @@
   gap: var(--spacing-md);
 }
 
-/* Timeline Item */
+/* Timeline Item - Mobile Layout (Date Left, Cover Right) */
 .timeline-item {
   background-color: var(--text-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  padding: var(--spacing-md);
+  padding: 0;
   display: grid;
-  grid-template-columns: auto 100px 1fr;
-  gap: var(--spacing-md);
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0;
   transition: all var(--transition-speed);
   align-items: start;
+  overflow: hidden;
 }
 
 .timeline-item:hover {
@@ -1446,17 +1616,21 @@
   transform: translateY(-2px);
 }
 
-/* Timeline Date Badge */
+/* Timeline Date Badge - Mobile Left Position */
 .timeline-date {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: var(--secondary-bg);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-sm);
+  border-radius: 0;
+  padding: var(--spacing-md) var(--spacing-sm);
   min-width: 60px;
   text-align: center;
+  gap: 0;
+  border-right: 1px solid var(--primary-bg);
+  grid-column: 1;
+  grid-row: 1 / 3;
 }
 
 .timeline-day {
@@ -1467,22 +1641,25 @@
 }
 
 .timeline-month {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   color: var(--text-secondary);
   text-transform: uppercase;
   margin-top: 0.25rem;
 }
 
-/* Timeline Book Cover */
+/* Timeline Book Cover - Mobile Right Position */
 .timeline-book-cover {
   width: 100px;
+  height: 150px;
   aspect-ratio: 2/3;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   overflow: hidden;
   background-color: var(--secondary-bg);
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-column: 2;
+  grid-row: 1 / 3;
 }
 
 .timeline-book-cover img {
@@ -1502,10 +1679,14 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  grid-column: 1 / -1;
+  grid-row: 3;
+  border-top: 1px solid var(--primary-bg);
 }
 
 .timeline-book-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -1523,7 +1704,7 @@
 }
 
 .timeline-book-author {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   margin: 0;
 }
@@ -1540,11 +1721,11 @@
 
 .timeline-book-meta {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   flex-wrap: wrap;
-  font-size: 0.813rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
 }
 
 .timeline-book-meta span:not(:last-child)::after {
@@ -1554,15 +1735,15 @@
 
 /* Timeline Actions */
 .timeline-book-actions {
-  display: flex;
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-sm);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  gap: var(--spacing-xs);
+  padding: 0 var(--spacing-md) var(--spacing-md);
 }
 
 .timeline-btn {
-  padding: var(--spacing-xs) var(--spacing-md);
-  font-size: 0.875rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.8rem;
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
@@ -1570,6 +1751,9 @@
   font-weight: 500;
   background-color: var(--text-primary);
   color: var(--text-white);
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 .timeline-btn:hover {
@@ -1581,18 +1765,55 @@
 .timeline-btn-secondary {
   background-color: transparent;
   color: var(--text-secondary);
-  border: 1px solid var(--text-secondary);
+  border: 1px solid var(--text-light);
+  font-size: 0;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2;
+  flex: 0;
+}
+
+.timeline-btn-secondary::before {
+  content: "📝";
+  font-size: 1.25rem;
 }
 
 .timeline-btn-secondary:hover {
   background-color: var(--secondary-bg);
-  color: var(--text-primary);
-  border-color: var(--text-primary);
+  border-color: var(--primary-color);
   transform: none;
 }
 
+.timeline-btn-danger {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--text-light);
+  font-size: 0;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2;
+  flex: 0;
+}
+
+.timeline-btn-danger::before {
+  content: "×";
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.timeline-btn-danger:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+
 /* ===================================
-   PROGRESS PAGE STYLES
+   8. PROGRESS / CURRENTLY READING PAGE
    =================================== */
 
 /* Progress Section */

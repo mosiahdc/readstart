@@ -37,17 +37,139 @@
   }
 
   /* Progress Page Mobile */
+  .progress-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .progress-tagline {
+    font-size: 0.95rem;
+  }
+
+  .stat-card {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+  }
+
+  .currently-reading-section h2 {
+    font-size: 1.5rem;
+    margin-top: var(--spacing-lg);
+  }
+
+  /* Reading Book Item - Mobile Vertical Layout */
+  .reading-book-item {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: unset;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    align-items: stretch;
+  }
+
+  .reading-book-cover {
+    width: 100%;
+    height: 250px;
+    aspect-ratio: auto;
+  }
+
+  .reading-book-info {
+    gap: var(--spacing-xs);
+  }
+
+  .reading-book-title {
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+
+  .reading-book-author {
+    font-size: 0.8rem;
+  }
+
+  .reading-book-description {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .progress-text {
+    font-size: 0.8rem;
+  }
+
   .reading-book-controls {
     flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .current-page-label {
+    width: 100%;
+    margin-bottom: var(--spacing-xs);
   }
 
   .current-page-input {
-    width: 70px;
+    width: 100%;
+    padding: var(--spacing-sm);
+    font-size: 1rem;
+    flex: 1;
+  }
+
+  .auto-save-indicator {
+    font-size: 0.75rem;
+    margin-top: var(--spacing-xs);
+  }
+
+  .reading-book-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 60px;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
   }
 
   .reading-book-actions .btn {
-    flex: 1 1 calc(50% - var(--spacing-xs));
+    flex: 1;
+    width: 100%;
     min-width: 0;
+    padding: var(--spacing-sm);
+    font-size: 0.875rem;
+  }
+
+  .reading-book-actions .remove-btn {
+    flex: 0;
+    width: 60px;
+    padding: var(--spacing-xs);
+    font-size: 0;
+    line-height: 1;
+  }
+
+  .reading-book-actions .remove-btn::before {
+    content: "×";
+    font-size: 1.5rem;
+    display: block;
+  }
+
+  .reading-tip-section {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+  }
+
+  .reading-tip-text {
+    font-size: 0.95rem;
+  }
+
+  .pagination {
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-lg);
+  }
+
+  .page-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -183,9 +305,15 @@
   }
 
   .author-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .author-filters .filter-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9rem;
+    white-space: normal;
   }
 
   .author-filters .filter-btn:last-child {
@@ -241,39 +369,72 @@
 
   /* Want to Read Responsive Styles */
   .shelf-header {
+    flex-direction: row;
     align-items: center;
   }
 
   .shelf-title-group h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .shelf-tagline {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 
   /* Book Item - Larger cover on tablet */
   .book-item {
-    grid-template-columns: 160px 1fr;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    align-items: start;
+    flex-direction: row;
+  }
+
+  .book-item__cover {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/3;
   }
 
   .book-item__title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .book-item__author {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .book-item__description {
-    font-size: 1rem;
-    -webkit-line-clamp: 4;
+    font-size: 0.875rem;
+    -webkit-line-clamp: 3;
   }
 
   .book-item__meta {
+    font-size: 0.8rem;
+  }
+
+  .book-item__actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    grid-template-columns: unset;
+  }
+
+  .book-item__btn {
+    width: auto;
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+
+  .book-item__btn--secondary {
+    grid-column: unset;
     font-size: 0.875rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    width: auto;
+  }
+
+  .book-item__btn--secondary::before {
+    content: "Remove";
+    font-size: 1rem;
   }
 
   /* Modal Responsive - Tablet */
@@ -287,7 +448,7 @@
 
   /* Progress Page - Tablet */
   .progress-header h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .progress-stats {
@@ -295,29 +456,68 @@
   }
 
   .reading-book-item {
-    grid-template-columns: 160px 1fr;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .reading-book-cover {
+    width: 100%;
+    height: 225px;
+    aspect-ratio: 2/3;
   }
 
   .reading-book-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .reading-book-author {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .reading-book-description {
-    -webkit-line-clamp: 3;
+    font-size: 0.875rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .reading-book-controls {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .current-page-label {
+    width: auto;
+    margin-bottom: 0;
+    margin-right: var(--spacing-xs);
   }
 
   .current-page-input {
-    width: 100px !important;
+    width: 80px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    flex: 0;
   }
 
-  .reading-book-actions .btn {
-    min-width: 120px;
+  .reading-book-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+  }
+
+  .reading-book-actions .remove-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1;
+    min-width: auto;
+    width: auto;
+  }
+
+  .reading-book-actions .remove-btn::before {
+    content: none;
   }
 
 
@@ -421,22 +621,57 @@
 
   /* Want to Read Desktop Styles */
   .shelf-title-group h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
   /* Book Item - Largest cover on desktop */
   .book-item {
-    grid-template-columns: 200px 1fr;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-xl);
+    grid-template-columns: 160px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .book-item__cover {
+    height: 240px;
   }
 
   .book-item__title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+  }
+
+  .book-item__author {
+    font-size: 1rem;
   }
 
   .book-item__description {
-    max-width: 800px;
+    font-size: 1rem;
+    max-width: 100%;
+    -webkit-line-clamp: 4;
+  }
+
+  .book-item__meta {
+    font-size: 0.875rem;
+  }
+
+  .book-item__actions {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  .book-item__btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.875rem;
+    width: auto;
+  }
+
+  .book-item__btn--secondary {
+    grid-column: unset;
+    font-size: 0.875rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+
+  .book-item__btn--secondary::before {
+    content: none;
   }
 
   /* Hover effects more pronounced on desktop */
@@ -473,21 +708,100 @@
 
   /* Timeline Page - Desktop */
   .timeline-header h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
+  }
+
+  .timeline-stats {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .timeline-item {
+    display: grid;
     grid-template-columns: auto 150px 1fr;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-xl);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .timeline-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-bg);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border-bottom: none;
+    min-width: 70px;
+    text-align: center;
+  }
+
+  .timeline-day {
+    font-size: 1.75rem;
+  }
+
+  .timeline-month {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
   }
 
   .timeline-book-cover {
     width: 150px;
+    height: auto;
+    aspect-ratio: 2/3;
+    border-radius: var(--radius-md);
   }
 
   .timeline-book-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+  }
+
+  .timeline-book-author {
+    font-size: 1rem;
+  }
+
+  .timeline-book-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: 0;
+  }
+
+  .timeline-btn {
+    font-size: 0.9rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+
+  .timeline-btn-secondary {
+    background-color: var(--secondary-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--text-secondary);
+    font-size: 0.875rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    grid-column: unset;
+    flex: 0 1 auto;
+    display: inline-block;
+  }
+
+  .timeline-btn-secondary::before {
+    content: "Notes";
+    font-size: 1rem;
+  }
+
+  .timeline-btn-danger {
+    background-color: var(--accent-red);
+    color: var(--text-white);
+    border: none;
+    font-size: 0.875rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    grid-column: unset;
+    flex: 0 1 auto;
+    display: inline-block;
+  }
+
+  .timeline-btn-danger::before {
+    content: "Remove";
+    font-size: 1rem;
   }
 
   .timeline-item:hover {
@@ -497,29 +811,106 @@
 
   /* Timeline Page - Tablet */
   .timeline-header h1 {
-    font-size: 3rem;
-  }
-
-  .timeline-stats {
-    grid-template-columns: repeat(3, 1fr);
+    font-size: 2.25rem;
   }
 
   .timeline-item {
+    display: grid;
     grid-template-columns: auto 120px 1fr;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
+    grid-template-rows: auto;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    align-items: start;
+  }
+
+  .timeline-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-bg);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    border-right: none;
+    min-width: auto;
+    text-align: center;
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .timeline-day {
+    font-size: 1.25rem;
+  }
+
+  .timeline-month {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
   }
 
   .timeline-book-cover {
-    width: 120px;
+    width: 100px;
+    height: auto;
+    aspect-ratio: 2/3;
+    border-radius: var(--radius-md);
+    grid-column: 2;
+    grid-row: auto;
+  }
+
+  .timeline-book-info {
+    grid-column: 3;
+    grid-row: auto;
+    border-top: none;
+    padding: 0;
   }
 
   .timeline-book-title {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
 
   .timeline-book-author {
-    font-size: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .timeline-book-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: 0;
+    grid-template-columns: unset;
+  }
+
+  .timeline-btn {
+    font-size: 0.8rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .timeline-btn-secondary {
+    background-color: var(--secondary-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--text-secondary);
+    font-size: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    grid-column: unset;
+    flex: auto;
+  }
+
+  .timeline-btn-secondary::before {
+    content: "Notes";
+    font-size: 0.8rem;
+  }
+
+  .timeline-btn-danger {
+    background-color: transparent;
+    color: var(--accent-red);
+    border: 1px solid var(--accent-red);
+    font-size: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    grid-column: unset;
+    flex: auto;
+  }
+
+  .timeline-btn-danger::before {
+    content: "Remove";
+    font-size: 0.8rem;
   }
 }
 
