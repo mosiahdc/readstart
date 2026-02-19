@@ -24,7 +24,7 @@
 
 .search-container {
     margin: var(--spacing-lg) auto;
-    /* max-width: 100%; */
+    max-width: 100%;
 }
 
 .search-input {
@@ -214,24 +214,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-md);
-}
-
-@media screen and (min-width: 768px) {
-
-    .results-grid,
-    .books-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .results-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .books-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
 }
 
 

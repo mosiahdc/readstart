@@ -80,7 +80,10 @@
     flex: 1;
   }
 
-  /* Results grid handled in home.css */
+  .results-grid,
+  .books-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   .book-hero__container {
     display: grid;
@@ -114,7 +117,11 @@
     justify-content: flex-start;
   }
 
-  /* Dashboard stats grid handled in dashboard.css */
+  .book-stats-grid,
+  .dashboard-stats-grid {
+    flex-direction: row;
+    max-width: 100%;
+  }
 
   .stat {
     flex: 1;
@@ -204,7 +211,9 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* Dashboard stats grid handled in dashboard.css */
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   .insights-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -243,7 +252,7 @@
 
   .book-item__description {
     font-size: 1rem;
-    /* -webkit-line-clamp: 4; */
+    -webkit-line-clamp: 4;
   }
 
   .book-item__meta {
@@ -282,9 +291,9 @@
     font-size: 1rem;
   }
 
-  /* .reading-book-description {
+  .reading-book-description {
     -webkit-line-clamp: 3;
-  } */
+  }
 
   .current-page-input {
     width: 100px !important;
@@ -314,7 +323,13 @@
     display: flex;
   }
 
-  /* Results grid handled in home.css */
+  .results-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
 
   .book-hero__container {
     grid-template-columns: 300px 1fr;
@@ -419,15 +434,19 @@
   }
 
   .reading-book-description {
-    /* -webkit-line-clamp: 4; */
+    -webkit-line-clamp: 4;
     max-width: 800px;
   }
 
+  /* Timeline — removed duplicate .timeline-header h1 that set 3.5rem then 3rem
+     in the same media query. Correct value is 3.5rem at 1024px+ (overridden at 1440px). */
   .timeline-header h1 {
     font-size: 3.5rem;
   }
 
-  /* Timeline stats handled in timeline.css */
+  .timeline-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   .timeline-item {
     grid-template-columns: auto 120px 1fr;

@@ -272,10 +272,10 @@ textarea:focus {
   border-color: #ef4444;
 }
 
-/* .form-input[type="number"],
+.form-input[type="number"],
 .current-page-input[type=number] {
   -moz-appearance: textfield;
-} */
+}
 
 .form-input[type="number"]::-webkit-outer-spin-button,
 .form-input[type="number"]::-webkit-inner-spin-button,
@@ -794,7 +794,7 @@ textarea:focus {
   color: var(--text-secondary);
   margin: 0;
   display: -webkit-box;
-  /* -webkit-line-clamp: 2; */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

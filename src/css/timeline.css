@@ -37,18 +37,6 @@
     margin-bottom: var(--spacing-xl);
 }
 
-@media screen and (min-width: 768px) {
-    .timeline-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .timeline-stats {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
 
 /* ===================================
    CONTENT SECTION

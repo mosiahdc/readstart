@@ -193,12 +193,6 @@
     gap: var(--spacing-md);
 }
 
-@media screen and (min-width: 768px) {
-    .dashboard-stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
 
 /* ===================================
    INSIGHT SECTION
