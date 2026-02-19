@@ -82,7 +82,9 @@
 
   .results-grid,
   .books-grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
   }
 
   .book-hero__container {
@@ -97,7 +99,10 @@
     margin-bottom: 0;
   }
 
-  .book-cover,
+  .book-cover {
+    max-width: 100%;
+  }
+
   .book-action-btn {
     max-width: 100%;
   }
@@ -110,9 +115,14 @@
     font-size: 2.5rem;
   }
 
-  /* Shared left-align for book detail flex items */
-  .book-rating,
-  .book-details,
+  .book-rating {
+    justify-content: flex-start;
+  }
+
+  .book-details {
+    justify-content: flex-start;
+  }
+
   .book-genres {
     justify-content: flex-start;
   }
@@ -131,12 +141,10 @@
     max-width: 800px;
   }
 
-  /* Shared left-align for book/community/author section headings */
   .book-description h2,
   .community-stats h2,
   .more-by-author h2,
-  .similar-books h2,
-  .book-list-section h2 {
+  .similar-books h2 {
     text-align: left;
   }
 
@@ -184,12 +192,16 @@
     grid-column: auto;
   }
 
+  .book-list-section h2 {
+    text-align: left;
+  }
+
   .right-column {
     position: sticky;
     top: var(--spacing-md);
   }
 
-  /* Dashboard */
+  /* Dashboard Responsive Styles */
   .dashboard-header h1 {
     font-size: 3rem;
   }
@@ -207,23 +219,27 @@
     font-size: 4rem;
   }
 
+  /* Library Stats - 4 columns on tablet+ */
   .book-stats-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  /* Library Stats - 4 columns on tablet+ */
   .dashboard-stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 
+  /* Insights - 2 columns on tablet */
   .insights-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Last insight card spans full width on tablet */
   .insight-card:last-child {
     grid-column: 1 / -1;
   }
 
-  /* Shelf */
+  /* Want to Read Responsive Styles */
   .shelf-header {
     align-items: center;
   }
@@ -236,6 +252,7 @@
     font-size: 1.125rem;
   }
 
+  /* Book Item - Larger cover on tablet */
   .book-item {
     grid-template-columns: 160px 1fr;
     gap: var(--spacing-lg);
@@ -259,7 +276,7 @@
     font-size: 0.875rem;
   }
 
-  /* Modal */
+  /* Modal Responsive - Tablet */
   .modal-overlay {
     padding: var(--spacing-md);
   }
@@ -268,7 +285,7 @@
     max-width: 500px;
   }
 
-  /* Progress */
+  /* Progress Page - Tablet */
   .progress-header h1 {
     font-size: 3rem;
   }
@@ -302,6 +319,8 @@
   .reading-book-actions .btn {
     min-width: 120px;
   }
+
+
 
   #reading-details-modal .modal-content,
   #finished-details-modal .modal-content {
@@ -353,8 +372,8 @@
     font-size: 3rem;
   }
 
-  /* Footer */
   .footer-container {
+    display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: var(--spacing-lg);
     align-items: center;
@@ -368,21 +387,26 @@
     justify-content: flex-end;
   }
 
-  /* Dashboard */
+  /* Dashboard Desktop Styles */
   .dashboard-header h1 {
     font-size: 3.5rem;
   }
 
+  /* Insights - 3 columns on desktop */
   .insights-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  /* Remove span on desktop */
   .insight-card:last-child {
     grid-column: auto;
   }
 
-  .goal-section,
-  .insight-card,
+  /* Increased padding on desktop */
+  .goal-section {
+    padding: var(--spacing-xl);
+  }
+
   .stat-card {
     padding: var(--spacing-xl);
   }
@@ -391,11 +415,16 @@
     font-size: 3.5rem;
   }
 
-  /* Shelf */
+  .insight-card {
+    padding: var(--spacing-xl);
+  }
+
+  /* Want to Read Desktop Styles */
   .shelf-title-group h1 {
     font-size: 3.5rem;
   }
 
+  /* Book Item - Largest cover on desktop */
   .book-item {
     grid-template-columns: 200px 1fr;
     gap: var(--spacing-xl);
@@ -410,14 +439,13 @@
     max-width: 800px;
   }
 
-  .book-item:hover,
-  .reading-book-item:hover,
-  .timeline-item:hover {
+  /* Hover effects more pronounced on desktop */
+  .book-item:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
   }
 
-  /* Progress */
+  /* Progress Page - Desktop */
   .progress-header h1 {
     font-size: 3.5rem;
   }
@@ -438,10 +466,38 @@
     max-width: 800px;
   }
 
-  /* Timeline — removed duplicate .timeline-header h1 that set 3.5rem then 3rem
-     in the same media query. Correct value is 3.5rem at 1024px+ (overridden at 1440px). */
+  .reading-book-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Timeline Page - Desktop */
   .timeline-header h1 {
     font-size: 3.5rem;
+  }
+
+  .timeline-item {
+    grid-template-columns: auto 150px 1fr;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+  }
+
+  .timeline-book-cover {
+    width: 150px;
+  }
+
+  .timeline-book-title {
+    font-size: 1.75rem;
+  }
+
+  .timeline-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Timeline Page - Tablet */
+  .timeline-header h1 {
+    font-size: 3rem;
   }
 
   .timeline-stats {
@@ -481,6 +537,7 @@
     height: 350px;
   }
 
+  /* Dashboard Extra Large */
   .goal-current,
   .goal-target {
     font-size: 6rem;
