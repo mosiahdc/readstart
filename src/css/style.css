@@ -102,7 +102,8 @@
   width: 100%;
 }
 
-.books-grid {
+.books-grid,
+.results-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-md);
