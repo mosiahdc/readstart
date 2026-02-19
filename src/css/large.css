@@ -114,11 +114,7 @@
     justify-content: flex-start;
   }
 
-  .book-stats-grid,
-  .dashboard-stats-grid {
-    flex-direction: row;
-    max-width: 100%;
-  }
+  /* Dashboard stats grid handled in dashboard.css */
 
   .stat {
     flex: 1;
@@ -208,9 +204,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .dashboard-stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  /* Dashboard stats grid handled in dashboard.css */
 
   .insights-grid {
     grid-template-columns: repeat(2, 1fr);
