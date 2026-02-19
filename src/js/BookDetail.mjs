@@ -1,7 +1,7 @@
 import { loadHeaderFooter, qs, getParam, withTimeout } from './utils.mjs';
 import { getBookDetails, searchByField, getRelatedWorks } from './BookData.mjs';
 import { showShelfSelectionModal } from './ShelfModal.mjs';
-import { renderBookCards } from './bookCard.mjs';
+import { renderBookCards } from './BookCard.mjs';
 import { isBookInAnyShelf, findBookShelf } from './shelves.mjs';
 import { SHELF_TYPES } from './constants.mjs';
 

@@ -2,7 +2,7 @@ import { loadHeaderFooter, qs, getParam, showNotification } from './utils.mjs';
 import { getAuthorBooks, getAuthorInfo } from './BookData.mjs';
 import { SHELF_TYPES } from './constants.mjs';
 import { getBooksFromShelf } from './shelves.mjs';
-import { renderBookCards } from './bookCard.mjs';
+import { renderBookCards } from './BookCard.mjs';
 import { PaginationManager } from './pagination.mjs';
 import { OffsetLoader } from './offsetLoader.mjs';
 import * as BookCache from './cache.mjs';

@@ -1,3 +1,5 @@
+import '../css/index.css';
+import '../css/home.css';
 import { loadHeaderFooter } from "./utils.mjs";
 import Homepage from "./homepage.mjs";
 

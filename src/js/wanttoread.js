@@ -1,3 +1,5 @@
+import '../css/index.css';
+import '../css/wanttoread.css';
 import { loadHeaderFooter, qs, showNotification, withTimeout } from './utils.mjs';
 import { getBooksFromShelf, removeBookFromShelf, moveBookToCurrentlyReading } from './shelves.mjs';
 import { SHELF_TYPES } from './constants.mjs';

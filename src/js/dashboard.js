@@ -1,3 +1,5 @@
+import '../css/index.css';
+import '../css/dashboard.css';
 import { loadHeaderFooter, qs, getLocalStorage, setLocalStorage, showNotification, withTimeout } from './utils.mjs';
 import { getBooksFromShelf } from './shelves.mjs';
 import { READING_GOAL_KEY, SHELF_TYPES, BOOK_PROGRESS_KEY } from './constants.mjs';
