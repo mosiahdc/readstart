@@ -1,3 +1,8 @@
+import '../css/base.css';
+import '../css/header-footer.css';
+import '../css/style.css';
+import '../css/wanttoread.css';
+import '../css/large.css';
 import { loadHeaderFooter, qs, showNotification, withTimeout } from './utils.mjs';
 import { getBooksFromShelf, removeBookFromShelf, moveBookToCurrentlyReading } from './shelves.mjs';
 import { SHELF_TYPES } from './constants.mjs';

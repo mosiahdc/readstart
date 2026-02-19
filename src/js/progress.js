@@ -1,3 +1,8 @@
+import '../css/base.css';
+import '../css/header-footer.css';
+import '../css/style.css';
+import '../css/progress.css';
+import '../css/large.css';
 import { loadHeaderFooter, qs, getLocalStorage, setLocalStorage, showNotification, withTimeout } from './utils.mjs';
 import { getBooksFromShelf, moveBookToFinished, removeBookFromShelf } from './shelves.mjs';
 import * as Constants from './constants.mjs';
