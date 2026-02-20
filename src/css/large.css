@@ -112,15 +112,10 @@
   }
 
   .current-page-input {
-    width: 100%;
+    width: 150px;
     padding: var(--spacing-sm);
     font-size: 1rem;
     flex: 1;
-  }
-
-  .auto-save-indicator {
-    font-size: 0.75rem;
-    margin-top: var(--spacing-xs);
   }
 
   .reading-book-actions {
@@ -496,9 +491,9 @@
   }
 
   .current-page-input {
-    width: 80px;
+    width: 150px !important;
     padding: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     flex: 0;
   }
 

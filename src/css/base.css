@@ -898,9 +898,21 @@ textarea:focus {
 }
 
 .current-page-input {
-  width: 100px;
-  padding: var(--spacing-xs);
+  width: 150px;
+  padding: 0.5rem;
   font-size: 0.875rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: border-color 0.2s ease;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.auto-save-indicator {
+  font-size: 0.813rem;
+  color: var(--accent-green);
+  font-weight: 500;
 }
 
 .auto-save-indicator {
